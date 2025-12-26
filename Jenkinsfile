@@ -5,12 +5,12 @@ pipeline {
             steps {
                 echo "I am Building..."
             }
-            stages('Test') {
+            stage('Test') {
                 steps{
                     echo "I am testing..."
                 }
             }
-            stages('Deploy') {
+            stage('Deploy') {
                 steps {
                     echo "I am deploying..."
                 }
