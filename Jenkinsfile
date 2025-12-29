@@ -20,7 +20,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {  //This is build section
+        stage('Build') {  //This is build section...
             steps {
                 script {
                     sh """
