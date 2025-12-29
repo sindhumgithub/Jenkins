@@ -24,7 +24,7 @@ pipeline {
     post {
         always {
             echo 'Cleaning workspace'
-            cleanWS()
+            cleanWs()
         }
         success {
             echo 'Build successful'
