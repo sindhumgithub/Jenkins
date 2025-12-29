@@ -1,28 +1,3 @@
-// pipeline {
-//     agent any
-
-//     stages {
-//         stage('Build') {
-//             steps {
-//                 echo "I am Building..."
-//             }
-//         }
-
-//         stage('Test') {
-//             steps {
-//                 echo "I am testing..."
-//             }
-//         }
-
-//         stage('Deploy') {
-//             steps {
-//                 echo "I am deploying..."
-//             }
-//         }
-//     }
-// }
-
-
 pipeline {
     agent {
         node {
@@ -44,6 +19,11 @@ pipeline {
             steps {
                 echo "I am deploying agent-1 node"
             }
+        }
+    }
+    post {
+        always {
+            echo "I will always say Hello again"
         }
     }
 }
