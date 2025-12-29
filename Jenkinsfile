@@ -4,13 +4,16 @@ pipeline {
             label 'AGENT-1'
         }
     }
+
     environment {
         COURSE = "Jenkins"
     }
+
     options {
-        timeout(time: 10, unit: 'MINUTES') 
+        timeout(time: 10, unit: 'MINUTES')
         disableConcurrentBuilds()
     }
+
     parameters {
         string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
@@ -20,24 +23,24 @@ pipeline {
     }
 
     stages {
-        stage('Build') {  //Build Section....
+        stage('Build') {
             steps {
                 script {
                     sh """
                         echo "Building"
-                        echo $COURSE
+                        echo ${COURSE}
                         env
-                        echo "Hello &{params.PERSON}"
-                        echo "Biography &{params.BIOGRAPHY}"
-                        echo "Deploy &{params.DEPLOY}"
-                        echo "Choice &{params.CHOICE}"
-                        echo "Password &{params.PASSWORD}"
+                        echo "Hello ${params.PERSON}"
+                        echo "Biography ${params.BIOGRAPHY}"
+                        echo "Deploy ${params.DEPLOY}"
+                        echo "Choice ${params.CHOICE}"
+                        echo "Password ${params.PASSWORD}"
                     """
                 }
             }
         }
 
-        stage('Test') { //this is test section
+        stage('Test') {
             steps {
                 echo 'Test stage'
             }
@@ -52,13 +55,13 @@ pipeline {
                         submitter: 'alice,bob',
                         parameters: [
                             string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                ]
-            )
-            echo "User entered PERSON = ${userInput}"
+                        ]
+                    )
+                    echo "User entered PERSON = ${userInput}"
+                }
+            }
         }
     }
-}
-
 
     post {
         always {
