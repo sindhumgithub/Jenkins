@@ -1,29 +1,32 @@
 pipeline {
-    agent {
-        node {
-            label 'AGENT-1'
-        }
-    }
     stages {
-        stage('Build') {
-            steps {
-                echo "I am building agent-1 node"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo "I am testing agent-1 node"
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo "I am deploying agent-1 node"
+        stage('Build'){
+            steps{
+                echo "Building..."
+
             }
         }
     }
-    post {
-        always {
-            echo "I will always say Hello again"
+    stages('Test'){
+        steps{
+            echo "Testing..."
+        }   
+    }
+    stages('Deploy'){
+            steps{
+                echo "Deploying..."
         }
     }
+post {
+    always {
+        echo "I am always saying hello again"
+        cleanWS()
+    }
+    success {
+        echo "I will run if  I am sucess"
+    }
+    failure {
+        echo "I will run If I am failure"
+    }
+}
 }
